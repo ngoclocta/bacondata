@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Ký - Web Xanh</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <style>
+        .auth-container {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .auth-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .auth-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .auth-header h1 {
+            color: #2c3e50;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .auth-header p {
+            color: #7f8c8d;
+            margin: 0;
+        }
+        
+        .form-floating {
+            margin-bottom: 20px;
+        }
+        
+        .form-floating input {
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 12px 16px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-floating input:focus {
+            border-color: #27ae60;
+            box-shadow: 0 0 0 0.2rem rgba(39, 174, 96, 0.25);
+        }
+        
+        .form-floating input.is-valid {
+            border-color: #27ae60;
+        }
+        
+        .form-floating input.is-invalid {
+            border-color: #e74c3c;
+        }
+        
+        .form-floating label {
+            color: #7f8c8d;
+            font-weight: 500;
+        }
+        
+        .btn-register {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            border: none;
+            border-radius: 12px;
+            padding: 12px 24px;
+            font-weight: 600;
+            font-size: 16px;
+            width: 100%;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-register:hover {
+            background: linear-gradient(135deg, #229954, #27ae60);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(39, 174, 96, 0.3);
+        }
+        
+        .btn-register:disabled {
+            opacity: 0.7;
+            transform: none;
+        }
+        
+        .auth-links {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .auth-links a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .auth-links a:hover {
+            color: #2980b9;
+        }
+        
+        .alert {
+            border-radius: 12px;
+            border: none;
+            margin-bottom: 20px;
+        }
+        
+        .loading-spinner {
+            display: none;
+            margin-right: 8px;
+        }
+        
+        .logo {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 24px;
+        }
+        
+        .password-strength {
+            margin-top: 5px;
+            font-size: 12px;
+        }
+        
+        .strength-weak { color: #e74c3c; }
+        .strength-medium { color: #f39c12; }
+        .strength-strong { color: #27ae60; }
+        
+        .validation-feedback {
+            font-size: 12px;
+            margin-top: 5px;
+        }
+        
+        .valid-feedback {
+            color: #27ae60;
+        }
+        
+        .invalid-feedback {
+            color: #e74c3c;
+        }
+        
+        @media (max-width: 576px) {
+            .auth-card {
+                padding: 30px 20px;
+                margin: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <div class="logo">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <h1>Đăng Ký</h1>
+                <p>Tham gia cộng đồng bảo vệ môi trường!</p>
+            </div>
+            
+            <div id="alert-container"></div>
+            
+            <form id="registerForm">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Tên đăng nhập" required>
+                    <label for="username">
+                        <i class="fas fa-user me-2"></i>Tên đăng nhập
+                    </label>
+                    <div class="validation-feedback" id="username-feedback"></div>
+                </div>
+                
+                <div class="form-floating">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                    <label for="email">
+                        <i class="fas fa-envelope me-2"></i>Email
+                    </label>
+                    <div class="validation-feedback" id="email-feedback"></div>
+                </div>
+                
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="full_name" name="full_name" placeholder="Họ và tên">
+                    <label for="full_name">
+                        <i class="fas fa-id-card me-2"></i>Họ và tên (tùy chọn)
+                    </label>
+                </div>
+                
+                <div class="form-floating">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Mật khẩu" required>
+                    <label for="password">
+                        <i class="fas fa-lock me-2"></i>Mật khẩu
+                    </label>
+                    <div class="password-strength" id="password-strength"></div>
+                    <div class="validation-feedback" id="password-feedback"></div>
+                </div>
+                
+                <div class="form-floating">
+                    <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Xác nhận mật khẩu" required>
+                    <label for="confirm_password">
+                        <i class="fas fa-lock me-2"></i>Xác nhận mật khẩu
+                    </label>
+                    <div class="validation-feedback" id="confirm-password-feedback"></div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-register">
+                    <span class="loading-spinner">
+                        <i class="fas fa-spinner fa-spin"></i>
+                    </span>
+                    <span class="btn-text">Đăng Ký</span>
+                </button>
+            </form>
+            
+            <div class="auth-links">
+                <p class="mb-2">Đã có tài khoản? <a href="{{ url_for('auth.login') }}">Đăng nhập ngay</a></p>
+                <p class="mb-0"><a href="{{ url_for('index') }}">← Về trang chủ</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Validation functions
+        function validateUsername(username) {
+            if (username.length < 3) {
+                return { valid: false, message: 'Tên đăng nhập phải có ít nhất 3 ký tự' };
+            }
+            if (username.length > 20) {
+                return { valid: false, message: 'Tên đăng nhập không được quá 20 ký tự' };
+            }
+            if (!/^[a-zA-Z0-9_]+$/.test(username)) {
+                return { valid: false, message: 'Tên đăng nhập chỉ được chứa chữ cái, số và dấu gạch dưới' };
+            }
+            return { valid: true, message: 'Tên đăng nhập hợp lệ' };
+        }
+        
+        function validateEmail(email) {
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (!emailRegex.test(email)) {
+                return { valid: false, message: 'Email không hợp lệ' };
+            }
+            return { valid: true, message: 'Email hợp lệ' };
+        }
+        
+        function validatePassword(password) {
+            if (password.length < 6) {
+                return { valid: false, message: 'Mật khẩu phải có ít nhất 6 ký tự', strength: 'weak' };
+            }
+            
+            let strength = 'weak';
+            let score = 0;
+            
+            if (password.length >= 8) score++;
+            if (/[a-z]/.test(password)) score++;
+            if (/[A-Z]/.test(password)) score++;
+            if (/[0-9]/.test(password)) score++;
+            if (/[^a-zA-Z0-9]/.test(password)) score++;
+            
+            if (score >= 3) strength = 'medium';
+            if (score >= 4) strength = 'strong';
+            
+            const messages = {
+                weak: 'Mật khẩu yếu',
+                medium: 'Mật khẩu trung bình',
+                strong: 'Mật khẩu mạnh'
+            };
+            
+            return { 
+                valid: score >= 2, 
+                message: score >= 2 ? 'Mật khẩu hợp lệ' : 'Mật khẩu phải chứa ít nhất 1 chữ cái và 1 số',
+                strength: strength,
+                strengthMessage: messages[strength]
+            };
+        }
+        
+        function updateFieldValidation(fieldId, validation) {
+            const field = document.getElementById(fieldId);
+            const feedback = document.getElementById(fieldId + '-feedback');
+            
+            field.classList.remove('is-valid', 'is-invalid');
+            
+            if (validation.valid) {
+                field.classList.add('is-valid');
+                feedback.className = 'validation-feedback valid-feedback';
+                feedback.textContent = validation.message;
+            } else {
+                field.classList.add('is-invalid');
+                feedback.className = 'validation-feedback invalid-feedback';
+                feedback.textContent = validation.message;
+            }
+        }
+        
+        // Real-time validation
+        document.getElementById('username').addEventListener('input', function() {
+            const validation = validateUsername(this.value);
+            updateFieldValidation('username', validation);
+        });
+        
+        document.getElementById('email').addEventListener('input', function() {
+            const validation = validateEmail(this.value);
+            updateFieldValidation('email', validation);
+        });
+        
+        document.getElementById('password').addEventListener('input', function() {
+            const validation = validatePassword(this.value);
+            updateFieldValidation('password', validation);
+            
+            // Update strength indicator
+            const strengthIndicator = document.getElementById('password-strength');
+            strengthIndicator.textContent = validation.strengthMessage || '';
+            strengthIndicator.className = 'password-strength strength-' + (validation.strength || 'weak');
+            
+            // Validate confirm password if it has value
+            const confirmPassword = document.getElementById('confirm_password');
+            if (confirmPassword.value) {
+                validateConfirmPassword();
+            }
+        });
+        
+        function validateConfirmPassword() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm_password').value;
+            
+            if (confirmPassword !== password) {
+                updateFieldValidation('confirm_password', {
+                    valid: false,
+                    message: 'Mật khẩu xác nhận không khớp'
+                });
+                return false;
+            } else {
+                updateFieldValidation('confirm_password', {
+                    valid: true,
+                    message: 'Mật khẩu xác nhận khớp'
+                });
+                return true;
+            }
+        }
+        
+        document.getElementById('confirm_password').addEventListener('input', validateConfirmPassword);
+        
+        // Form submission
+        document.getElementById('registerForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const spinner = submitBtn.querySelector('.loading-spinner');
+            const btnText = submitBtn.querySelector('.btn-text');
+            const alertContainer = document.getElementById('alert-container');
+            
+            // Validate all fields
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            const usernameValidation = validateUsername(username);
+            const emailValidation = validateEmail(email);
+            const passwordValidation = validatePassword(password);
+            const confirmPasswordValid = validateConfirmPassword();
+            
+            if (!usernameValidation.valid || !emailValidation.valid || !passwordValidation.valid || !confirmPasswordValid) {
+                alertContainer.innerHTML = `
+                    <div class="alert alert-danger">
+                        <i class="fas fa-exclamation-circle me-2"></i>Vui lòng kiểm tra lại thông tin đã nhập
+                    </div>
+                `;
+                return;
+            }
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            spinner.style.display = 'inline-block';
+            btnText.textContent = 'Đang đăng ký...';
+            alertContainer.innerHTML = '';
+            
+            try {
+                const formData = new FormData(this);
+                const data = Object.fromEntries(formData);
+                
+                const response = await fetch('{{ url_for("auth.register") }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    // Show success message
+                    alertContainer.innerHTML = `
+                        <div class="alert alert-success">
+                            <i class="fas fa-check-circle me-2"></i>${result.message}
+                        </div>
+                    `;
+                    
+                    // Redirect after short delay
+                    setTimeout(() => {
+                        window.location.href = result.redirect || '{{ url_for("auth.dashboard") }}';
+                    }, 1500);
+                } else {
+                    // Show error message
+                    alertContainer.innerHTML = `
+                        <div class="alert alert-danger">
+                            <i class="fas fa-exclamation-circle me-2"></i>${result.message}
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                alertContainer.innerHTML = `
+                    <div class="alert alert-danger">
+                        <i class="fas fa-exclamation-circle me-2"></i>Lỗi kết nối. Vui lòng thử lại.
+                    </div>
+                `;
+            } finally {
+                // Reset button state
+                submitBtn.disabled = false;
+                spinner.style.display = 'none';
+                btnText.textContent = 'Đăng Ký';
+            }
+        });
+        
+        // Auto-focus first input
+        document.getElementById('username').focus();
+    </script>
+</body>
+</html>
+

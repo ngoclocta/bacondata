@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Xanh: Chung Tay Vì Một Tương Lai Bền Vững</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/pwa-enhanced.css">
+    <link rel="manifest" href="/static/manifest.json">
+</head>
+<body>
+    <header class="bg-light py-3">
+        <nav class="container d-flex justify-content-between align-items-center">
+            <a href="#" class="navbar-brand text-success fw-bold fs-3">HOUC</a>
+            <ul class="nav">
+                <li class="nav-item"><a href="#" class="nav-link text-dark">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link text-dark">About Us</a></li>
+                <li class="nav-item"><a href="#" class="nav-link text-dark">Pollution</a></li>
+                <li class="nav-item"><a href="#" class="nav-link text-dark">Impact</a></li>
+                <li class="nav-item"><a href="#" class="nav-link text-dark">Solutions</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-section position-relative text-white d-flex align-items-center justify-content-center text-center">
+            <div class="hero-overlay"></div>
+            <div class="container z-1">
+                <h1 class="display-4 fw-bold">The Urgent Challenge: Our Planet in Peril</h1>
+                <p class="lead">Hãy cùng nhau hành động để bảo vệ môi trường sống của chúng ta.</p>
+            </div>
+        </section>
+
+        <section class="pollution-impact-section py-5">
+            <div class="container">
+                <h2 class="text-center mb-5">Ô Nhiễm Môi Trường và Tác Hại</h2>
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <img src="/static/images/air_pollution.png" class="card-img-top" alt="Ô nhiễm không khí">
+                            <div class="card-body">
+                                <h5 class="card-title">Ô Nhiễm Không Khí</h5>
+                                <p class="card-text">Khí thải từ nhà máy, xe cộ gây ra các bệnh hô hấp và biến đổi khí hậu.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <img src="/static/images/water_pollution.png" class="card-img-top" alt="Ô nhiễm nước">
+                            <div class="card-body">
+                                <h5 class="card-title">Ô Nhiễm Nước</h5>
+                                <p class="card-text">Nước thải chưa xử lý làm ô nhiễm sông, hồ, biển, ảnh hưởng đến sức khỏe và sinh vật biển.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <img src="/static/images/soil_pollution.png" class="card-img-top" alt="Ô nhiễm đất">
+                            <div class="card-body">
+                                <h5 class="card-title">Ô Nhiễm Đất</h5>
+                                <p class="card-text">Hóa chất nông nghiệp và rác thải làm đất bạc màu, ảnh hưởng đến cây trồng và sức khỏe con người.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <img src="/static/images/plastic_pollution.png" class="card-img-top" alt="Ô nhiễm rác thải nhựa">
+                            <div class="card-body">
+                                <h5 class="card-title">Ô Nhiễm Rác Thải Nhựa</h5>
+                                <p class="card-text">Nhựa dùng một lần gây tắc nghẽn, ô nhiễm đại dương và ảnh hưởng đến chuỗi thức ăn.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-5">
+                    <button class="btn btn-success btn-lg" id="solutionsButton">Giải Pháp</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Solutions Modal -->
+        <div class="modal fade" id="solutionsModal" tabindex="-1" aria-labelledby="solutionsModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-success text-white">
+                        <h5 class="modal-title" id="solutionsModalLabel">Choose Your Impact</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row text-center">
+                            <div class="col-md-6 mb-4">
+                                <a href="/waste-sorting" class="text-decoration-none">
+                                    <div class="solution-option card h-100 p-3">
+                                        <i class="fas fa-recycle fa-4x text-success mb-3"></i>
+                                        <h6 class="fw-bold">Cách Phân Loại Rác</h6>
+                                        <p class="text-muted">Hướng dẫn chi tiết cách phân loại rác thải tại nguồn.</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <a href="/bottle-game" class="text-decoration-none">
+                                    <div class="solution-option card h-100 p-3">
+                                        <i class="fas fa-gamepad fa-4x text-info mb-3"></i>
+                                        <h6 class="fw-bold">Nhặt Chai Nhựa Tích Điểm</h6>
+                                        <p class="text-muted">Tham gia game, tích điểm và leo lên bảng xếp hạng.</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <a href="/plastic-reduction" class="text-decoration-none">
+                                    <div class="solution-option card h-100 p-3">
+                                        <i class="fas fa-shopping-bag fa-4x text-warning mb-3"></i>
+                                        <h6 class="fw-bold">Hạn Chế Túi Nilon</h6>
+                                        <p class="text-muted">Theo dõi và giảm thiểu việc sử dụng túi nilon.</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <a href="/ai-consultant" class="text-decoration-none">
+                                    <div class="solution-option card h-100 p-3">
+                                        <i class="fas fa-robot fa-4x text-primary mb-3"></i>
+                                        <h6 class="fw-bold">AI Tư Vấn Bảo Vệ Môi Trường</h6>
+                                        <p class="text-muted">Nhận tư vấn thông minh từ AI về các vấn đề môi trường.</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <a href="/diy-recycling" class="text-decoration-none">
+                                    <div class="solution-option card h-100 p-3">
+                                        <i class="fas fa-lightbulb fa-4x text-danger mb-3"></i>
+                                        <h6 class="fw-bold">DIY Tái Chế Sáng Tạo</h6>
+                                        <p class="text-muted">Học cách biến rác thải thành những món đồ hữu ích.</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <a href="/video-search" class="text-decoration-none">
+                                    <div class="solution-option card h-100 p-3">
+                                        <i class="fas fa-search fa-4x text-purple mb-3"></i>
+                                        <h6 class="fw-bold">Tìm Kiếm Video DIY</h6>
+                                        <p class="text-muted">Tìm video hướng dẫn theo sở thích cá nhân.</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <a href="/ocean-cleanup" class="text-decoration-none">
+                                    <div class="solution-option card h-100 p-3">
+                                        <i class="fas fa-water fa-4x text-info mb-3"></i>
+                                        <h6 class="fw-bold">Nhặt Rác Đại Dương</h6>
+                                        <p class="text-muted">Game tương tác nhặt rác dưới đại dương với câu hỏi môi trường.</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <a href="/games" class="text-decoration-none">
+                                    <div class="solution-option card h-100 p-3">
+                                        <i class="fas fa-gamepad fa-4x text-success mb-3"></i>
+                                        <h6 class="fw-bold">Tất Cả Trò Chơi</h6>
+                                        <p class="text-muted">Khám phá tất cả các trò chơi bảo vệ môi trường.</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container text-center">
+            <p>&copy; 2025 Web Xanh. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/script.js"></script>
+    <script src="/static/js/pwa-enhanced.js"></script>
+</body>
+</html>
+
+

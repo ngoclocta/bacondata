@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tư Vấn Môi Trường - Web Xanh</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .chat-container {
+            height: 500px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            background-color: #f8f9fa;
+        }
+        .message {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 10px;
+            max-width: 80%;
+        }
+        .user-message {
+            background-color: #007bff;
+            color: white;
+            margin-left: auto;
+            text-align: right;
+        }
+        .ai-message {
+            background-color: #28a745;
+            color: white;
+            margin-right: auto;
+        }
+        .typing-indicator {
+            background-color: #6c757d;
+            color: white;
+            margin-right: auto;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+    <header class="bg-light py-3">
+        <nav class="container d-flex justify-content-between align-items-center">
+            <a href="/" class="navbar-brand text-success fw-bold fs-3">HOUC</a>
+            <ul class="nav">
+                <li class="nav-item"><a href="/" class="nav-link text-dark">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link text-dark">About Us</a></li>
+                <li class="nav-item"><a href="#" class="nav-link text-dark">Pollution</a></li>
+                <li class="nav-item"><a href="#" class="nav-link text-dark">Impact</a></li>
+                <li class="nav-item"><a href="#" class="nav-link text-dark">Solutions</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container py-5">
+        <div class="text-center mb-5">
+            <h1 class="display-4 text-primary">🤖 AI Tư Vấn Môi Trường</h1>
+            <p class="lead">Nhận tư vấn thông minh về các vấn đề môi trường từ AI</p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0"><i class="fas fa-comments me-2"></i>Trò Chuyện Với AI</h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="chat-container" id="chatContainer">
+                            <div class="message ai-message">
+                                <i class="fas fa-robot me-2"></i>
+                                Xin chào! Tôi là AI tư vấn môi trường. Bạn có thể hỏi tôi về:
+                                <ul class="mt-2 mb-0">
+                                    <li>Cách giảm thiểu ô nhiễm</li>
+                                    <li>Sống xanh hàng ngày</li>
+                                    <li>Tái chế và xử lý rác thải</li>
+                                    <li>Tiết kiệm năng lượng</li>
+                                    <li>Bảo vệ thiên nhiên</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="messageInput" placeholder="Nhập câu hỏi của bạn..." maxlength="500">
+                            <button class="btn btn-primary" id="sendButton">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                        <small class="text-muted">Nhấn Enter để gửi tin nhắn</small>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-md-6 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body text-center">
+                                <i class="fas fa-question-circle fa-3x text-info mb-3"></i>
+                                <h6>Câu Hỏi Gợi Ý</h6>
+                                <button class="btn btn-outline-info btn-sm mb-2 w-100 suggestion-btn">Làm thế nào để giảm rác thải nhựa?</button>
+                                <button class="btn btn-outline-info btn-sm mb-2 w-100 suggestion-btn">Cách tiết kiệm điện tại nhà?</button>
+                                <button class="btn btn-outline-info btn-sm w-100 suggestion-btn">Tại sao cần bảo vệ môi trường?</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body text-center">
+                                <i class="fas fa-lightbulb fa-3x text-warning mb-3"></i>
+                                <h6>Mẹo Hữu Ích</h6>
+                                <ul class="list-unstyled text-start">
+                                    <li><i class="fas fa-check text-success me-2"></i>Hỏi câu hỏi cụ thể</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Mô tả tình huống rõ ràng</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Yêu cầu giải pháp thực tế</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-5">
+            <a href="/" class="btn btn-success btn-lg">
+                <i class="fas fa-home me-2"></i>Về Trang Chủ
+            </a>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container text-center">
+            <p>&copy; 2025 Web Xanh. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/ai_consultant.js"></script>
+</body>
+</html>
+

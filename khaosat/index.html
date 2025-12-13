@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FTC Form Survey Interface</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #0f1219; /* Dark background */
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a1d26; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4b5563; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6b7280; 
+        }
+
+        /* Glass effect for sidebar cards */
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Toggle Menu Animation */
+        #settingsMenu {
+            transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+            transform-origin: top right;
+        }
+        #settingsMenu.hidden {
+            opacity: 0;
+            transform: scale(0.95);
+            pointer-events: none;
+            display: block; 
+            visibility: hidden;
+        }
+        #settingsMenu:not(.hidden) {
+            opacity: 1;
+            transform: scale(1);
+            visibility: visible;
+        }
+    </style>
+</head>
+<body class="text-gray-200" onclick="closeMenuOutside(event)">
+
+    <!-- Top Navigation / Actions (Floating Top Right) -->
+    <div class="fixed top-4 right-4 z-50 flex flex-col items-end gap-2">
+        <!-- Top Buttons Row -->
+        <div class="flex gap-3">
+            <!-- Link Button -->
+            <a href="https://team25152.page.gd" class="bg-[#2d2f36] hover:bg-[#3e4149] text-white px-4 py-2 rounded-full text-sm font-medium transition shadow-lg border border-gray-700 flex items-center justify-center no-underline">
+                go back home
+            </a>
+            <button onclick="toggleSettings(event)" class="w-10 h-10 bg-[#2d2f36] hover:bg-[#3e4149] rounded-full flex items-center justify-center text-gray-400 transition shadow-lg border border-gray-700 relative">
+                <i class="fa-solid fa-gear"></i>
+            </button>
+            <button class="w-10 h-10 bg-[#5f6368] hover:bg-[#70757a] rounded-full flex items-center justify-center text-white transition shadow-lg">
+                <span class="font-bold text-xs">N</span>
+            </button>
+        </div>
+
+        <!-- Dropdown Menu -->
+        <div id="settingsMenu" class="hidden bg-[#2d2f36] text-white rounded-xl shadow-2xl border border-gray-700 w-48 mt-2 p-2 z-50">
+            <!-- Theme Section -->
+            <div class="px-4 py-2">
+                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">Theme</p>
+                <button class="w-full text-left text-sm py-1.5 px-2 rounded hover:bg-[#3e4149] text-gray-300">Light</button>
+                <button class="w-full text-left text-sm py-1.5 px-2 rounded hover:bg-[#3e4149] text-white font-medium bg-[#3e4149]">Dark</button>
+                <button class="w-full text-left text-sm py-1.5 px-2 rounded hover:bg-[#3e4149] text-gray-300">Liquid Glass</button>
+            </div>
+            
+            <!-- Divider -->
+            <div class="h-px bg-gray-600 mx-2 my-1"></div>
+
+            <!-- Language Section -->
+            <div class="px-4 py-2">
+                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">Language</p>
+                <button class="w-full text-left text-sm py-1.5 px-2 rounded hover:bg-[#3e4149] text-white font-medium bg-[#3e4149]">English</button>
+                <button class="w-full text-left text-sm py-1.5 px-2 rounded hover:bg-[#3e4149] text-gray-300">Tiếng Việt</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto p-4 md:p-8 pt-20">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <!-- LEFT COLUMN: Branding & Contact -->
+            <div class="lg:col-span-4 space-y-6">
+                
+                <!-- Logo Badge -->
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 bg-blue-900 rounded-full flex items-center justify-center border-2 border-blue-500 overflow-hidden">
+                        <img src="https://raw.githubusercontent.com/ngoclocta/wed-d-n-xanh-/refs/heads/main/web_xanh_firebase/logo.jpg" alt="Logo" class="w-full h-full object-cover">
+                    </div>
+                    <span class="text-2xl font-bold text-white tracking-wider">FDN43</span>
+                </div>
+
+                <!-- "Suvervey" Title Block -->
+                <div class="bg-[#1e2025] rounded-xl p-4 border border-gray-800 w-fit">
+                    <h1 class="text-xl font-medium text-gray-200 px-4">suvervey</h1>
+                </div>
+
+                <!-- Contact Card -->
+                <div class="bg-[#111827] rounded-2xl p-6 border border-gray-800 shadow-xl relative overflow-hidden">
+                    <!-- Glow effect -->
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-blue-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+                    
+                    <h3 class="text-gray-400 text-sm mb-1">Contact Us</h3>
+                    <p class="text-gray-500 text-xs mb-6">Have questions, want to collaborate, or become a sponsor? Let's connect!</p>
+                    
+                    <h2 class="text-xl font-bold text-white mb-6">Get in Touch</h2>
+
+                    <div class="space-y-6">
+                        <!-- Email -->
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full bg-blue-900/30 flex items-center justify-center text-blue-400 shrink-0">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <p class="text-white font-medium text-sm">Email</p>
+                                <p class="text-gray-400 text-xs">f3dn43.25152@gmail.com</p>
+                            </div>
+                        </div>
+
+                        <!-- Website -->
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full bg-blue-900/30 flex items-center justify-center text-blue-400 shrink-0">
+                                <i class="fa-solid fa-globe"></i>
+                            </div>
+                            <div>
+                                <p class="text-white font-medium text-sm">Website</p>
+                                <a href="#" class="text-blue-400 text-xs hover:underline">team25152.page.gd</a>
+                            </div>
+                        </div>
+
+                        <!-- Appointment -->
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full bg-blue-900/30 flex items-center justify-center text-blue-400 shrink-0">
+                                <i class="fa-solid fa-calendar-check"></i>
+                            </div>
+                            <div>
+                                <p class="text-white font-medium text-sm">Book an Appointment</p>
+                                <p class="text-gray-400 text-xs">Schedule a time with us</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-gray-800">
+                        <p class="text-white font-bold mb-3 text-sm">Follow Us</p>
+                        <div class="flex gap-3 mb-4">
+                            <a href="#" class="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center hover:bg-blue-600 transition text-white text-xs"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#" class="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center hover:bg-pink-600 transition text-white text-xs"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#" class="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center hover:bg-red-600 transition text-white text-xs"><i class="fa-brands fa-youtube"></i></a>
+                        </div>
+                        <p class="text-[10px] text-gray-500 text-center">© 2025 Team 25152 "FDN43". All rights reserved.</p>
+                        <p class="text-[10px] text-gray-500 text-center">Website designed by Team 25152 "FDN43"</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN: The REAL Google Form (Embed with Dark Mode Filter) -->
+            <div class="lg:col-span-8 h-full min-h-screen">
+                <!-- Wrapper for iframe -->
+                <div class="rounded-lg shadow-lg overflow-hidden w-full h-[800px] lg:h-[1200px] bg-[#202124]">
+                    <!-- Added filter to invert colors -->
+                    <iframe 
+                        src="https://docs.google.com/forms/d/e/1FAIpQLScTTiMSGu3k3t-OENCL_T7mfaMS0PPmVfieA18yMwsQlsOkhQ/viewform?embedded=true" 
+                        width="100%" 
+                        height="100%" 
+                        frameborder="0" 
+                        marginheight="0" 
+                        marginwidth="0"
+                        class="w-full h-full"
+                        style="filter: invert(1) hue-rotate(180deg);"
+                    >
+                        Đang tải Google Forms...
+                    </iframe>
+                </div>
+                <p class="text-xs text-gray-500 mt-2 text-center">*Giao diện tối được tạo bằng bộ lọc màu. Màu sắc ảnh gốc có thể bị đảo ngược.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Toggle Settings Menu
+        function toggleSettings(event) {
+            event.stopPropagation();
+            const menu = document.getElementById('settingsMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Close menu when clicking outside
+        function closeMenuOutside(event) {
+            const menu = document.getElementById('settingsMenu');
+            if (!menu.contains(event.target) && !menu.classList.contains('hidden')) {
+                menu.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>

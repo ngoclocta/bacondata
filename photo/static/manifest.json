@@ -1,0 +1,79 @@
+{
+    "name": "Web Xanh - Bảo Vệ Môi Trường",
+    "short_name": "Web Xanh",
+    "description": "Ứng dụng hỗ trợ bảo vệ môi trường với các tính năng tương tác và video DIY",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#28a745",
+    "orientation": "portrait-primary",
+    "scope": "/",
+    "lang": "vi",
+    "categories": ["education", "lifestyle", "utilities"],
+    "icons": [
+        {
+            "src": "/static/icons/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/static/icons/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Phân loại rác",
+            "short_name": "Phân loại",
+            "description": "Hướng dẫn phân loại rác thải",
+            "url": "/waste-sorting",
+            "icons": [
+                {
+                    "src": "/static/icons/icon-192x192.png",
+                    "sizes": "192x192"
+                }
+            ]
+        },
+        {
+            "name": "Game nhặt chai",
+            "short_name": "Game",
+            "description": "Chơi game nhặt chai tích điểm",
+            "url": "/bottle-game",
+            "icons": [
+                {
+                    "src": "/static/icons/icon-192x192.png",
+                    "sizes": "192x192"
+                }
+            ]
+        },
+        {
+            "name": "Tìm kiếm video DIY",
+            "short_name": "Video DIY",
+            "description": "Tìm video hướng dẫn tái chế",
+            "url": "/video-search",
+            "icons": [
+                {
+                    "src": "/static/icons/icon-192x192.png",
+                    "sizes": "192x192"
+                }
+            ]
+        },
+        {
+            "name": "AI tư vấn",
+            "short_name": "AI",
+            "description": "Tư vấn về môi trường",
+            "url": "/ai-consultant",
+            "icons": [
+                {
+                    "src": "/static/icons/icon-192x192.png",
+                    "sizes": "192x192"
+                }
+            ]
+        }
+    ],
+    "prefer_related_applications": false
+}
+

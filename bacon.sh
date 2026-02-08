@@ -34,6 +34,7 @@ brew install cloudflared
 # Chạy Tunnel (Sử dụng token truyền vào từ biến $1)
 # Dấu & giúp nó chạy ẩn
 cloudflared tunnel run --token $1 &
+sudo cloudflared service install eyJhIjoiYmQ0YTBhMjQzYzRmNDc4YjhkMzVjMDFhMTQyMDQ1MzYiLCJ0IjoiMjg2ODZlNzktNDcwNi00NTJhLTgzMTAtZDgxYWI5ZjJlMDdmIiwicyI6Ik1EZzJNalJpWmprdE0yTTNaUzAwWm1NeUxXRXhZekF0WVdOak5ESmhNV0k1TURNdyJ9
 
 # 5. TẠO FILE LOGIN.SH MỚI (Sửa lỗi không hiện thông tin)
 # Đoạn này sẽ tự viết ra file login.sh hiển thị đúng thông tin cần thiết
